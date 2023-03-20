@@ -1,0 +1,28 @@
+RewriteEngine on
+
+RewriteRule ^forgot/(.*)$	index.php?action=forgot&verification=$1 [L]
+
+RewriteRule ^([0-9a-zA-Z_]+)/([0-9a-zA-Z_-]+)/status/([0-9a-zA-Z_-]+)/id/([0-9a-zA-Z_]+)/page/([0-9]+)$ index.php?action=$1&switch=$2&status=$3&id=$4&page=$5 [L]
+RewriteRule ^([0-9a-zA-Z_-]+)/status/([0-9a-zA-Z_-]+)/id/([0-9a-zA-Z_]+)/page/([0-9]+)$ index.php?action=$1&switch=status&status=$2&id=$3&page=$4 [L]
+RewriteRule ^([0-9a-zA-Z_-]+)/status/([0-9a-zA-Z_-]+)/id/([0-9a-zA-Z_]+)$ index.php?action=$1&switch=status&status=$2&id=$3 [L]
+
+RewriteRule ^([0-9a-zA-Z_-]+)/([0-9a-zA-Z_-]+)/(edit|delete|detail)/([0-9a-zA-Z_-]+)/page/([0-9]+)$ index.php?action=$1&switch=$2&id=$4&page=$5 [L]
+RewriteRule ^([0-9a-zA-Z_-]+)/([0-9a-zA-Z_-]+)/(edit|delete|detail)/([0-9a-zA-Z_-]+)$ index.php?action=$1&switch=$2&id=$4 [L]
+
+RewriteRule ^([0-9a-zA-Z_-]+)/(edit|delete|detail)/([0-9a-zA-Z_-]+)/page/([0-9]+)$ index.php?action=$1&switch=$2&id=$3&page=$4 [L]
+RewriteRule ^([0-9a-zA-Z_-]+)/(edit|delete|detail)/([0-9a-zA-Z_-]+)$ index.php?action=$1&switch=$2&id=$3 [L]
+
+RewriteRule ^([0-9a-zA-Z_-]+)/([0-9a-zA-Z_-]+)/([0-9a-zA-Z_-]+)/([0-9a-zA-Z_-]+)/([0-9a-zA-Z_-]+)/([0-9a-zA-Z_-]+)/([0-9a-zA-Z_-]+)/([0-9a-zA-Z_-]+)$ index.php?action=$1&switch=$2&$3=$4&$5=$6&$7=$8 [L]
+RewriteRule ^([0-9a-zA-Z_-]+)/([0-9a-zA-Z_-]+)/([0-9a-zA-Z_-]+)/([0-9a-zA-Z_-]+)/([0-9a-zA-Z_-]+)/([0-9a-zA-Z_-]+)$ index.php?action=$1&switch=$2&$3=$4&$5=$6 [L]
+RewriteRule ^([0-9a-zA-Z_-]+)/([0-9a-zA-Z_-]+)/([0-9a-zA-Z_-]+)/([0-9a-zA-Z_-]+)$ index.php?action=$1&switch=$2&$3=$4 [L]
+
+RewriteRule ^([0-9a-zA-Z_-]+)/([0-9a-zA-Z_-]+)/page/([0-9]+)$ index.php?action=$1&switch=$2&page=$3 [L]
+RewriteRule ^([0-9a-zA-Z_-]+)/([0-9a-zA-Z_-]+)/page/$ index.php?action=$1&switch=$2&page=1 [L]
+RewriteRule ^([0-9a-zA-Z_-]+)/page/([0-9]+)$ index.php?action=$1&page=$2 [L]
+RewriteRule ^([0-9a-zA-Z_-]+)/page/$ index.php?action=$1&page=1 [L]
+
+RewriteRule ^([0-9a-zA-Z_-]+)/([0-9a-zA-Z_-]+)$ index.php?action=$1&switch=$2 [L]
+RewriteRule ^([0-9a-zA-Z_-]+)$ index.php?action=$1 [L]
+RewriteRule ^$ index.php?action= [L]
+
+Options All -Indexes
