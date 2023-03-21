@@ -1,9 +1,12 @@
 <?php
-    $list_module = [];
-    $list_module[] = "home";
-    $list_module[] = "config";
-    $list_module[] = "user";
+$config['modules'] = [
+    'list' => [
+        'home',
+        'config',
+        'user',
 
-    $list_module[] = "links";
-    $list_module[] = "cosplay";
+        'links',
+        'cosplay'
+    ]
+];
 ?>
