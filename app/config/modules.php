@@ -1,12 +1,5 @@
 <?php
-$config['modules'] = [
-    'list' => [
-        'home',
-        'config',
-        'user',
-
-        'links',
-        'cosplay'
-    ]
-];
+$config['modules'] = [];
+$config['modules']['default'] = "main";
+$config['modules']['list'] = []; 
 ?>
