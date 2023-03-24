@@ -1,5 +1,16 @@
 <?php
+
 class Route(){
+
+	public $request;
+
+	public function __construct() {
+	  $this->request = new Request();
+	}
+
+	function get_name() {
+
+	}
 
 	function state(){
 		global $config;
@@ -9,11 +20,12 @@ class Route(){
 			$state = "frontend";
 		}
 
-		return $state;
+		return $this->state;
 	}
 
 	function alias(){
 
+		return $alias;
 	}
 
 	function last(){
