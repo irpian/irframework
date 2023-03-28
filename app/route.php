@@ -118,7 +118,9 @@ class Route(){
       $request_url = rtrim($request_url, '/');
       $request_url_parts = explode('/', $request_url);
       array_shift($request_url_parts);
-      $alias = "";
+      
+      $list_module = ""; // get module available
+      $alias = ""; //aray search
 
       if(in_array($alias, $list_module)){
         $module = $config['module'];
