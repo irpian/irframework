@@ -3,6 +3,9 @@ session_start();
 
 include "config.php";
 include "app/app.php";
+include_once "app/routes.php";
+
+include $route->set();
 
 // require_once "include/class.db.php";
 // require_once "include/config.function.php";
