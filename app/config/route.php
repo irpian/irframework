@@ -1,6 +1,6 @@
 <?php
 $config['route'] = [
-    'main' => 'main'
+    'main' => 'main',
     'default' => 'main'
 ];
 

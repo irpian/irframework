@@ -62,44 +62,42 @@ function loginCek(){
 	}
 }
 
+	function forgotPasswordCek(){
+		global $db;
+		$site_name = config("site_name");
+		$login_failed_count = $_SESSION["password_failed"];
 
+		if($_POST['login']){
+			$user = $db->xxs($db->injection($_POST['user']));
+			if (trim($user)==""){ $pesan[] = "User Empty"; }
 
-function forgotPasswordCek(){
-	global $db;
-	$site_name = config("site_name");
-	$login_failed_count = $_SESSION["password_failed"];
+			$password_encript = encript($pwd);
+			$count_admin = $db->row("id", "admin", "WHERE email='$user'");
+			$select_admin = $db->value("email, password", "admin", "WHERE email='$user' ");
 
-	if($_POST['login']){
-		$user = $db->xxs($db->injection($_POST['user']));
-		if (trim($user)==""){ $pesan[] = "User Empty"; }
+			if($count_admin==1){
+				$url_forgot_password = urlForgotPassword($select_admin['email'], $select_admin['password']);
 
-		$password_encript = encript($pwd);
-		$count_admin = $db->row("id", "admin", "WHERE email='$user'");
-		$select_admin = $db->value("email, password", "admin", "WHERE email='$user' ");
+				$penerima = $select_admin['email'];
+				$subject = $site_name." - Lupa Password";
+				$content="
+				<b>Lupa Password $site_name</b><br>
+				Ganti Password : ".$url_forgot_password;
 
-		if($count_admin==1){
-			$url_forgot_password = urlForgotPassword($select_admin['email'], $select_admin['password']);
-
-			$penerima = $select_admin['email'];
-			$subject = $site_name." - Lupa Password";
-			$content="
-			<b>Lupa Password $site_name</b><br>
-			Ganti Password : ".$url_forgot_password;
-
-			sendEmail($penerima, $subject, $content);
-			echo success("Url Lupa Password Telah dikirim ke Email ");
-		} else {
-			if($login_failed_count==""){
-				$_SESSION["password_failed"] = 1;
+				sendEmail($penerima, $subject, $content);
+				echo success("Url Lupa Password Telah dikirim ke Email ");
 			} else {
-				$_SESSION["password_failed"] = $login_failed_count+1;
+				if($login_failed_count==""){
+					$_SESSION["password_failed"] = 1;
+				} else {
+					$_SESSION["password_failed"] = $login_failed_count+1;
+				}
+				$pesan[] = "User Not Found, Please Check your User Or Password";
+				echo errorList($pesan);
 			}
-			$pesan[] = "User Not Found, Please Check your User Or Password";
-			echo errorList($pesan);
-		}
 
+		}
 	}
-}
 
 function forgotPasswordUrl($email, $password){
 	$verification = encript(encript($email).encript($password));

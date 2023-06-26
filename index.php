@@ -2,8 +2,11 @@
 session_start();
 
 include "config.php";
-include "app/app.php";
+include_once "app/app.php";
 include_once "app/routes.php";
+
+
+var_dump($config);
 
 include $route->set();
 
@@ -18,4 +21,6 @@ include $route->set();
 // } else {
 // 	include $theme->base()."/layout.php";
 // }
+
+
 ?>

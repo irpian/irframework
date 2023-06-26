@@ -17,23 +17,26 @@ if (empty($_SERVER['HTTPS']) || $_SERVER['HTTPS'] === "off") {
 }
 
 define("base_root", dirname( __FILE__ ));
-define("base_url", $server_http."://irtools.com", true);
+define("base_url", $server_http.$_SERVER['SERVER_NAME'], true);
 define("base_admin", base_url."/admin", true);
 define("base_image", base_url."/images", true);
 
-$config['module']['alias'] = [];
-$config['module']['alias']['main'] = "main";
-$config['module']['alias']['berita'] = "news";
-$config['module']['alias']['user'] = "user";
+// $config['module']['alias']['main'] = "main";
+// $config['module']['alias']['berita'] = "news";
+// $config['module']['alias']['user'] = "user";
 
-$config['state']['backend'] = "admin";
-$config['state']['api'] = "api";
+// $config['state']['backend'] = "admin";
+// $config['state']['api'] = "api";
 
-$config['module']['default'] = "main";
+// $config['module']['default'] = "main";
+// $config['module']['list'][] = "main";
+// $config['module']['list'][] = "user";
+
+// $config['theme']['default'] = 'default';
+
+$config['module']['list'] = []; 
 $config['module']['list'][] = "main";
 $config['module']['list'][] = "user";
-
-$config['theme']['default'] = 'default';
 
 $website = "ir-tools";
 

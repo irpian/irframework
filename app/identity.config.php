@@ -9,9 +9,10 @@
         }
     }
 
-	foreach ($module['list'] as $key => $value) {
-		$fileConfig = base_root."/modules/".$value."/config.php";
-		if(is_file($fileFunction)){
+	foreach ($config['module']['list'] as $key => $value) {
+        
+		$fileConfig = base_root."/modules/".$value."/controller/config.php";
+		if(is_file($fileConfig)){
 			include_once $fileConfig;
 		}
 	}
