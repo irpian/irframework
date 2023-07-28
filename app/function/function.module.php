@@ -38,7 +38,8 @@ function config($inital){
 	return $value;
 }
 
-function getList($module, $table, $primary="id", $select="*", $where=" WHERE 1 ", $orderby=" id DESC ", $limit=10, $page){
+//function getList($module, $table, $primary="id", $select="*", $where=" WHERE 1 ", $orderby=" id DESC ", $limit=10, $page){
+function getList($module, $table, $primary, $select, $where, $orderby, $limit, $page){
 	global $db;
 		$total_row = $db->row($primary, $table, $where);
 		$totalPage = totalPage($total_row, $limit);
@@ -59,7 +60,8 @@ function getList($module, $table, $primary="id", $select="*", $where=" WHERE 1 "
 		return $list;
 }
 
-function getDetail($select="*", $table, $primary="id", $id){
+//function getDetail($select="*", $table, $primary="id", $id){
+function getDetail($select, $table, $primary, $id){
 	global $db;
 	$data = $db->value($select, $table, " WHERE $primary='".$id."'");
 	return $data;

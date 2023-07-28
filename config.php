@@ -11,15 +11,15 @@ $session = $config['session'];
 $session_admin = $config['session_backend'];
 
 if (empty($_SERVER['HTTPS']) || $_SERVER['HTTPS'] === "off") {
-	$server_http = "http";
+	$serverHttp = "http";
 } else {
-	$server_http = "https";
+	$serverHttp = "https";
 }
 
 define("base_root", dirname( __FILE__ ));
-define("base_url", $server_http.$_SERVER['SERVER_NAME'], true);
-define("base_admin", base_url."/admin", true);
-define("base_image", base_url."/images", true);
+define("base_url", $serverHttp.$_SERVER['SERVER_NAME']);
+define("base_admin", base_url."/admin");
+define("base_image", base_url."/images");
 
 // $config['module']['alias']['main'] = "main";
 // $config['module']['alias']['berita'] = "news";

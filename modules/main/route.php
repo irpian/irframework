@@ -10,6 +10,11 @@ if($module->state() == "api"){
 }elseif($module->state() == "backend"){ 
 	$route->get('/', 'view/backend/index.php');
 
+	$route->get('/login', 'view/backend/login.php');
+	$route->post('/login', function(){
+		echo 'login post test';
+	});
+
 	$route->get('/test', function(){
 		echo 'backend main test';
 	});
@@ -18,5 +23,6 @@ if($module->state() == "api"){
 
 	$route->get('/test', 'view/backend/index.php');
 }
+
 
 //any('/404', 'view/any.php');

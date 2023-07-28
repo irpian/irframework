@@ -6,7 +6,9 @@ include_once "app/app.php";
 include_once "app/routes.php";
 
 
-var_dump($config);
+//var_dump($config);
+
+
 
 include $route->set();
 

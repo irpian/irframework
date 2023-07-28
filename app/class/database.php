@@ -18,7 +18,11 @@ class db {
 		return $connection;
 	}
 
-	function sql($field, $table, $where) {  // sql
+	function globals(){
+		$this->execute(" SET GLOBAL sql_mode=''; ");
+	}
+
+	function sql($field, $table, $where) {
 		$sql = "SELECT $field FROM $table $where";
 		return $sql;
 	}
@@ -33,19 +37,6 @@ class db {
 	function execute($sql) { // execute
 		$connection = $this->connect();
 		$data = mysqli_query($connection, $sql);
-		return $data;
-	}
-
-	function value($field, $table, $where) { // value
-		$query = $this->query($field, $table, $where);
-		$value = mysqli_fetch_array($query);
-		if($field=="*"){
-			$data = $value;
-		} elseif(preg_match("/,/", $field)){
-			$data = $value;
-		} else {
-			$data = $value[$field];
-		}
 		return $data;
 	}
 
@@ -95,8 +86,17 @@ class db {
 		}
 	}
 
-	function globals(){
-		$this->execute(" SET GLOBAL sql_mode=''; ");
+	function get($field, $table, $where) { // value
+		$query = $this->query($field, $table, $where);
+		$value = mysqli_fetch_array($query);
+		if($field=="*"){
+			$data = $value;
+		} elseif(preg_match("/,/", $field)){
+			$data = $value;
+		} else {
+			$data = $value[$field];
+		}
+		return $data;
 	}
 
 	function xxs($string) { // anti xxs
@@ -117,6 +117,15 @@ class db {
 			$sql = mysqli_query("SHOW TABLE STATUS WHERE `Name`='$table'");
 			$data = mysqli_fetch_assoc($sql);
 			return $data['Auto_increment'];
+		}
+	}
+
+	function tableExists($table){
+		$cekTable = $this->execute("SHOW TABLES LIKE '".$table."'");
+		if($cekTable){
+			return true;
+		} else {
+			return false;
 		}
 	}
 }
